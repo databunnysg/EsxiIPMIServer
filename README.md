@@ -5,7 +5,7 @@ The typical use case is connect Databunny ESXIIPMIServer from MAAS.
 
 # Usage
 
-- Edit the esxi server ip, username, password in esxiserverconfig.csv file.  Enable ssh access from esxi server web management interface. Support 1 esxi server. 
+- Edit the esxi server ip, username, password in esxiserverconfig.csv file.  Enable ssh access from esxi server web management interface. Opensource release support 1 esxi server. For multiple esxi server, close source license and commercial support please contact contact@databunny.sg.
 
 - Start IPMI Server
 
