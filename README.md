@@ -12,11 +12,8 @@ The typical use case is connect Databunny IPMIServer from bare metal controll sy
 - Select IPMI power options
 - Fill in IPMI server address, port, admin/admin
 <img width="568" alt="image" src="https://user-images.githubusercontent.com/53151832/172476589-3a95342d-b57f-4c12-9d39-aba8560087ac.png">
-- You are not ready to go, MAAS connect with your vm through IPMI server just like a real BMC enabled physical server.
+- MAAS now connected to vm through IPMI server just like a real BMC enabled physical server.
 <img width="730" alt="image" src="https://user-images.githubusercontent.com/53151832/172476875-acebb6a5-d614-4c92-9325-97495a6f64b5.png">
-
-# License
-- Opensource IPMIServer release support 1 esxi server under AGPL license. For multiple esxi servers, close source license, integration development and commercial support please contact contact@databunny.sg.
 
 # Usage
 
@@ -40,3 +37,5 @@ Utility tool to communicate with esxi server.
 - runIPMIServer.py
 Subprocess manager to start and stop FrontendIPMIServer and BackendIPMIServer
  
+# License
+- Opensource IPMIServer release support 1 esxi server under AGPL license. For multiple esxi servers, close source license, integration development and commercial support please contact contact@databunny.sg.
