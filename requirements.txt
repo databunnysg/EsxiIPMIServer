@@ -1,0 +1,8 @@
+pandas>=1.4
+pyghmi>=1.5
+cryptography>=2.1  # BSD/Apache-2.0
+python-dateutil>=2.8.1  # BSD
+redis>=4
+redislite
+six>=1.10.0 # MIT
+paramiko>=2.0
