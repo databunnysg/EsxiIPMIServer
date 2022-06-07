@@ -3,27 +3,6 @@ import json
 from io import StringIO
 from paramiko import SSHClient,AutoAddPolicy
 
-
-
-
-
-
-'''
-Databunny BMC board supports controlling 16 motherboard poweron/off/reset action and power status reading from usb serial port. 
-BMC board contains 22-53 digital i/o pin and A0-15 analog pin.
-Pin 22-53 used for control motherboard power on/off and reset pin.
-Pin A0-15 used for read motherboard power led voltage output to check power status.
-
-BMC output result in below format every 1 second, need to remove <linebreak> and convert it to json
-The value of A0-A15 represent the voltage 0-1023 (0v-5v) reading from power pin reading from power status pin. BMC power status reading might be inaccurate when BMC and motherboard is not connected or motherboard PSU is not connected with standby power. 
-After BMC connected with motherboard and PSU read, if machine power status off status reading should be a very low value 0-10, after poweron reading should be exactly 1023.  
-
-Sample output of reading: b'{"COUNTER":2,"HARDWAREID":"DATABUNNY-BMC-02-A0-A15-D22-D53","A0":0,"A1":0,"A2":0,"A3":0,"A4":1014,"A5":1022,"A6":1017,"A7":1017,"A8":1023,"A9":1021,"A10":0,"A11":1012,"A12":1023,"A13":1023,"A14":1022,"A15":1023}<linebreak>\r\n'
-
-COUNTER WILL AUTO INCREASE BY 1 FOR EACH SECOND AFTER CONNECTION WAS MADE
-HARDWAREID IS THE BMC ID UNIQUE TO EACH BMC
-
-'''
 def readBMCPinValue(hostid=None,action=None):
     pass
 def readBMCAllValue(ip, username, password):
@@ -72,18 +51,6 @@ def readBMCAllValue(ip, username, password):
 def readBMCAllHostDataFrame():
     pass
 
-'''
-BMC accept json as input in this format:
-{actionname:pinnumber} follow by \r\n (\r\n is required, BMC will check \r 13 to parse JSON) 
-
-poweron/reset action will set pin with low voltage for 1 second then give back high voltage back to pin 
-poweroff action will set pin with low voltage for 4 second then give back high voltage back to pin 
-
-{'poweron':'22'}
-{'poweroff':'22'}
-{'reset':'24'}
-
-'''
 def writeBMCValue(ip=None,username=None,password=None,vmid=None,action=None):
     print(f"Execute writeBMCValue {ip} {username} {password} {vmid} {action}")
     client = SSHClient()
