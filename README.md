@@ -1,16 +1,22 @@
-# Databunny ESXIIPMIServer
+# Databunny IPMIServer
 
 Databunny ESXIIPMIServer connects to esxi servers read vms and start IPMI Server for each vm inside ESXI Server on localhost IP.
 The typical use case is connect Databunny ESXIIPMIServer from MAAS.  
 
-# Usage
-- Edit the esxi server ip, username, password in esxiserverconfig.csv file. Then start IPMI Server with below options.
+# License
+- Opensource IPMIServer release support 1 esxi server under AGPL license. For multiple esxi servers, close source license, integration development and commercial support please contact contact@databunny.sg.
 
-- Option1: Start IPMI Server for all vms inside esxi server. 
+# Usage
+
+- Edit the esxi server ip, username, password in esxiserverconfig.csv file.  Enable ssh access from esxi server web management interface. 
+
+- Start IPMI Server
+
+- Option1: Start IPMI Server for all vms inside esxi server
   start.sh 
 - Option2: Start IPMI server for individual vm inside esxi server  
-  python ./BackendIPMIServer.py esxiipserverip esxiusername esxipassword
-  python ./runIPMIServer.py port ipmiusername ipmipassword esxiserverip esxiusername esxipassword
+  python BackendIPMIServer.py esxiipserverip esxiusername esxipassword
+  python runIPMIServer.py port ipmiusername ipmipassword esxiserverip esxiusername esxipassword
 
 # Components
 - FrontendIPMIServer.py 
