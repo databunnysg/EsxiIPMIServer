@@ -5,7 +5,7 @@ The typical use case is connect Databunny ESXIIPMIServer from MAAS.
 
 # Demo install
 
-[![asciicast](https://asciinema.org/a/500145.png)]([https://asciinema.org/a/14](https://asciinema.org/a/500145?t=25&speed=4&theme=solarized-dark))
+[![asciicast](https://asciinema.org/a/500145.png)]([https://asciinema.org/a/500145?t=25&speed=4&theme=solarized-dark])
 
 
 # License
