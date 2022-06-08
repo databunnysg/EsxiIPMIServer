@@ -22,6 +22,7 @@ conda create --name ipmiserver
 conda activate ipmiserver
 git pull https://github.com/databunnysg/EsxiIPMIServer.git
 cd EsxiIPMIServer
+pip install -r ./requirements.txt
 start.sh
 </code></pre>
 
