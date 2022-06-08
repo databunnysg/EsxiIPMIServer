@@ -17,6 +17,14 @@ The typical use case is connect Databunny IPMIServer from bare metal controll sy
 
 # Usage
 
+<pre><code>
+conda create --name ipmiserver
+conda activate ipmiserver
+git pull https://github.com/databunnysg/EsxiIPMIServer.git
+cd EsxiIPMIServer
+start.sh
+</code></pre>
+
 - Edit the esxi server ip, username, password in esxiserverconfig.csv file.  Enable ssh access from esxi server web management interface. 
 
 - Start IPMI Server
