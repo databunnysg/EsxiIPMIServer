@@ -1,12 +1,30 @@
 # Databunny IPMIServer
 
-Databunny ESXIIPMIServer connects to esxi servers read vms and start IPMI Server for each vm inside ESXI Server on localhost IP.
-The typical use case is connect Databunny ESXIIPMIServer from MAAS.  
+IPMIServer expose itself as BMC server runs with IPMI LAN 2.0 IPMI protocal. IPMIServer connects to vmware esxi servers read vms power status and perform power on/off/reset/shutdown action. 
 
-# License
-- Opensource IPMIServer release support 1 esxi server under AGPL license. For multiple esxi servers, close source license, integration development and commercial support please contact contact@databunny.sg.
+The typical use case is connect Databunny IPMIServer from bare metal controll system from MAAS. 
+
+# Demo install
+
+[![asciicast](https://asciinema.org/a/500145.svg)](https://asciinema.org/a/500145?t=25&speed=4&theme=solarized-dark)
+
+# Use case in MAAS 
+- Select IPMI power options
+- Fill in IPMI server address, port, admin/admin
+<img width="568" alt="image" src="https://user-images.githubusercontent.com/53151832/172476589-3a95342d-b57f-4c12-9d39-aba8560087ac.png">
+- MAAS now connected to vm through IPMI server just like a real BMC enabled physical server.
+<img width="730" alt="image" src="https://user-images.githubusercontent.com/53151832/172476875-acebb6a5-d614-4c92-9325-97495a6f64b5.png">
 
 # Usage
+
+<pre><code>
+conda create --name ipmiserver
+conda activate ipmiserver
+git pull https://github.com/databunnysg/EsxiIPMIServer.git
+cd EsxiIPMIServer
+pip install -r ./requirements.txt
+start.sh
+</code></pre>
 
 - Edit the esxi server ip, username, password in esxiserverconfig.csv file.  Enable ssh access from esxi server web management interface. 
 
@@ -28,3 +46,5 @@ Utility tool to communicate with esxi server.
 - runIPMIServer.py
 Subprocess manager to start and stop FrontendIPMIServer and BackendIPMIServer
  
+# License
+- Opensource IPMIServer release support 1 esxi server under AGPL license. For multiple esxi servers, close source license, integration development and commercial support please contact contact@databunny.sg.
