@@ -27,7 +27,7 @@ if __name__ == '__main__':
         #if out.decode("utf-8").find(f"BackendIPMIServer 10.0.50.48") < 0:
         #print(out)
         #print(out.decode("utf-8").find(f"BackendIPMIServer.py {sys.argv[4]}"))
-        if out.decode("utf-8").split(f"BackendIPMIServer.py {sys.argv[4]}")==2 :
+        if len(out.decode("utf-8").split(f"BackendIPMIServer.py {sys.argv[4]}"))==2 :
             # Not found BackendIPMIServer in running process then we start new one
             print("starting BackendIPMIServer")
             print(f"BackendIPMIServer.py {sys.argv[4]} {sys.argv[6]} {sys.argv[7]}")
