@@ -8,7 +8,6 @@ from paramiko import SSHClient,AutoAddPolicy
 import pandas as pd
 import json
 import sys
-
 if __name__ == '__main__':
     if len(sys.argv)!=4:
         print("Require esxi ip, username, password to start. Now exit.")
@@ -20,9 +19,11 @@ if __name__ == '__main__':
 # try create embeded redis server on port 8002
 # if port already taken assume redis already running and connect with redis client instead
 try:
-    redis=Redis(serverconfig={'port': '8002'})
+    redis=Redis(serverconfig={'port': '8003'})
 except:
-    redis = red.Redis(host='localhost', port=8002, db=0)
+    print("BackendIPMIServer Already Started")
+    sys.exit(0)
+    #redis = red.Redis(host='localhost', port=8002, db=0)
 #   redis=Redis()
 
 #redis.lpush("actionqueue",'{"action":"poweron","hostid":"00:E0:7A:68:07:57"}')

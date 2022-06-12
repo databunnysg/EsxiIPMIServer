@@ -36,7 +36,7 @@ class VirtualBMC(bmc.Bmc):
         self.esxpassword = esxpassword
         self.vmid = vmid
         self.port = port
-        self.r = redis.Redis(host='localhost', port=8002, db=0)
+        self.r = redis.Redis(host='localhost', port=8003, db=0)
 
     def get_boot_device(self):
         return 0

@@ -40,7 +40,7 @@ start.sh
 - FrontendIPMIServer.py 
 Start one or all IPMIServer from port 7623+ and receive IPMI connection and communicate with backend BMCServer through redis port 8002
 - BackendBMCServer.py 
-Start a redis server on port 8002 as message broker, use BMCUtil receive update ESXI server vm status.
+Start a redis server on port 8003 as message broker, use BMCUtil receive update ESXI server vm status.
 - BMCUtil.py 
 Utility tool to communicate with esxi server.
 - runIPMIServer.py
