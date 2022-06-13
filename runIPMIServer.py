@@ -5,6 +5,8 @@ import sys
 import subprocess
 import FrontendIPMIServer as vbmcs
 import BMCUtil as bmcutil
+import psutil
+
 def startBMC(port="7623",ipmiusername="admin",ipmipassword="admin",ip="",vmid="",username="root",password="password123!"):
     bmcinstance = vbmcs.VirtualBMC(port,ipmiusername,ipmipassword,ip,vmid,username,password,"0.0.0.0")
     bmcinstance.listen(timeout=30)
@@ -24,20 +26,17 @@ if __name__ == '__main__':
             result = subprocess.Popen([sys.executable, "runIPMIServer.py",str(row['Port']),"admin","admin", row['Hypervisorip'],str(row['Vmid']),row['Username'],row['Password'],"EsxiIPMIFrontendprocess"])
     if len(sys.argv)>=7:
         # check existing BackendIPMIServer
-        re=subprocess.Popen("ps -aux | grep BackendIPMIServer",stdout=subprocess.PIPE,shell=True)
-        out,err= re.communicate()
-        #if out.decode("utf-8").find(f"BackendIPMIServer 10.0.50.48") < 0:
-        #print(out)
-        #print(out.decode("utf-8").find(f"BackendIPMIServer.py {sys.argv[4]}"))
-        output=out.decode("utf-8")
-        print(output)
-        print(len(output.split(f"BackendIPMIServer.py {sys.argv[4]}")))
-        if len(output.split(f"BackendIPMIServer.py {sys.argv[4]}"))==1 :
+        #print(str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMI"))
+        if str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMIServer")==-1 :
             # Not found BackendIPMIServer in running process then we start new one
             print("starting BackendIPMIServer")
             print(f"BackendIPMIServer.py {sys.argv[4]} {sys.argv[6]} {sys.argv[7]}")
-            subprocess.Popen([sys.executable, "BackendIPMIServer.py",sys.argv[4],sys.argv[6],sys.argv[7]])
+            subprocess.Popen([sys.executable,"BackendIPMIServer.py",sys.argv[4],sys.argv[6],sys.argv[7]])
+            time.sleep(5)
         print(f"Subprocess Starting Frontend IPMI Server on port {sys.argv[1]} to BMC server {sys.argv[4]} vmid {sys.argv[5]}  ")
         startBMC(port=int(sys.argv[1]),ipmiusername=sys.argv[2],ipmipassword=sys.argv[3],ip=sys.argv[4],vmid=sys.argv[5],username=sys.argv[6],password=sys.argv[7])
 
 
+
+
+print(str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMI"))

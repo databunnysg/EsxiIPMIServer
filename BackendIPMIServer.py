@@ -21,9 +21,9 @@ if __name__ == '__main__':
 try:
     redis=Redis(serverconfig={'port': '8003'})
 except:
-    print("BackendIPMIServer Already Started")
-    sys.exit(0)
-    #redis = red.Redis(host='localhost', port=8002, db=0)
+    print("Redis Server Already Started")
+    # sys.exit(0)
+    redis = red.Redis(host='localhost', port=8003, db=0)
 #   redis=Redis()
 
 #redis.lpush("actionqueue",'{"action":"poweron","hostid":"00:E0:7A:68:07:57"}')
