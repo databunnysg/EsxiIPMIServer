@@ -27,12 +27,19 @@ if __name__ == '__main__':
     if len(sys.argv)>=7:
         # check existing BackendIPMIServer
         #print(str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMI"))
-        if str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMIServer")==-1 :
+        time.sleep(1)
+        if str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMIServerPowerAction")==-1 :
             # Not found BackendIPMIServer in running process then we start new one
-            print("starting BackendIPMIServer")
-            print(f"BackendIPMIServer.py {sys.argv[4]} {sys.argv[6]} {sys.argv[7]}")
-            subprocess.Popen([sys.executable,"BackendIPMIServer.py",sys.argv[4],sys.argv[6],sys.argv[7]])
-            time.sleep(5)
+            print("starting BackendIPMIServerPowerAction")
+            print(f"BackendIPMIServerPowerAction.py {sys.argv[4]} {sys.argv[6]} {sys.argv[7]}")
+            subprocess.Popen([sys.executable,"BackendIPMIServerPowerAction.py",sys.argv[4],sys.argv[6],sys.argv[7]])
+        time.sleep(1)
+        if str([proc.cmdline() for proc in psutil.process_iter()]).find("BackendIPMIServerPowerStatus")==-1 :
+            # Not found BackendIPMIServer in running process then we start new one
+            print("starting BackendIPMIServerPowerStatus")
+            print(f"BackendIPMIServerPowerStatus.py {sys.argv[4]} {sys.argv[6]} {sys.argv[7]}")
+            subprocess.Popen([sys.executable,"BackendIPMIServerPowerStatus.py",sys.argv[4],sys.argv[6],sys.argv[7]])
+        time.sleep(1)
         print(f"Subprocess Starting Frontend IPMI Server on port {sys.argv[1]} to BMC server {sys.argv[4]} vmid {sys.argv[5]}  ")
         startBMC(port=int(sys.argv[1]),ipmiusername=sys.argv[2],ipmipassword=sys.argv[3],ip=sys.argv[4],vmid=sys.argv[5],username=sys.argv[6],password=sys.argv[7])
 

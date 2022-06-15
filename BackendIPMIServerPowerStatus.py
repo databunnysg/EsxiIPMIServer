@@ -8,6 +8,7 @@ from paramiko import SSHClient,AutoAddPolicy
 import pandas as pd
 import json
 import sys
+import psutil
 if __name__ == '__main__':
     if len(sys.argv)!=4:
         print("Require esxi ip, username, password to start. Now exit.")
@@ -15,6 +16,11 @@ if __name__ == '__main__':
     esxip = sys.argv[1]
     esxusername = sys.argv[2]
     esxpassword = sys.argv[3]
+    if len(str([proc.cmdline() for proc in psutil.process_iter()]).split("BackendIPMIServerPowerStatus"))> 2:
+        # Not found BackendIPMIServer in running process then we start new one
+        print("BackendIPMIServerPowerStatus already started, only one instance should exists, now existing...")
+        exit(0)
+
     print(f"Starting BackendIPMIServer for {esxip} connecting to esxi server ...")
 # try create embeded redis server on port 8002
 # if port already taken assume redis already running and connect with redis client instead
@@ -37,7 +43,7 @@ def checkhoststatus():
 
 def checkactionqueue():
     action = redis.rpop("hypervisoripmiaction")
-    print(f"Received IPMI action {action}")
+    #print(f"Received IPMI action {action}")
     #action = """{"ip":"10.0.50.48","action":"on","vmid":"3","username":"root","password":"password123!"}"""
     if action is not None:
         # action = '{"poweron":"00:E0:7A:68:07:57"}'
@@ -95,7 +101,7 @@ def checkactionqueue():
 while True:
     try:
         checkhoststatus()
-        checkactionqueue()
+        #checkactionqueue()
     finally:
         pass
 
